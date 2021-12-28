@@ -7,4 +7,4 @@ class Test(APIView):
     permission_classes = (permissions.AllowAny,)
 
     def get(self, request):
-        return HttpResponse({"some": "data"})
+        return HttpResponse('{"some": "data"}')
