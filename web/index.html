@@ -9,7 +9,7 @@
   <body>
     <h1>ideationaly</h1>
     <div class="form-container">
-      <form onsubmit="login()">
+      <form onsubmit="login();return false">
         <input type="text" placeholder="Enter Username" required />
         <input type="password" placeholder="Enter Password" required />
         <button type="submit">Login</button>
@@ -17,7 +17,7 @@
     </div>
   </body>
   <script>
-    const login = async () => {
+    const login = async (e) => {
       console.log(document.querySelector("input[type=text]").value);
       const word = await openRequest("/testing", "GET");
       console.log(word);
