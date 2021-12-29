@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'ideas',
     'accounts',
     'corsheaders',
     'rest_framework',
