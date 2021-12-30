@@ -3,7 +3,7 @@ from .serializers import IdeaSerializer
 from rest_framework import mixins, generics, permissions
 
 
-class IdeaList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
+class IdeaView(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
     queryset = Idea.objects.all()
     serializer_class = IdeaSerializer
 
@@ -18,3 +18,6 @@ class IdeaList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericA
 
     def post(self, request, *args, **kwargs):
         return self.create(request, *args, **kwargs)
+
+
+idea_view = IdeaView.as_view()
