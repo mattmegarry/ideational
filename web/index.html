@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <script src="/http.js"></script>
+    <script src="/index.js"></script>
     <title>Ideational</title>
   </head>
   <body>
@@ -17,100 +19,4 @@
     </div>
     <div id="ideas-list"></div>
   </body>
-  <script>
-    const login = async (e) => {
-      try {
-        const username = document.querySelector("input[type=text]").value;
-        const password = document.querySelector("input[type=password]").value;
-        const res = await openRequest("/token/obtain/", "POST", {
-          username,
-          password,
-        });
-        const { status, data } = res;
-        if (status === 200) {
-          localStorage.setItem("token", data.access);
-          await getIdeas();
-        } else {
-          alert("Invalid Credentials");
-        }
-      } catch (err) {
-        console.log(err);
-      }
-    };
-
-    const getIdeas = async () => {
-      try {
-        const res = await authRequest("/ideas/", "GET");
-        const { status, data } = res;
-        if (status === 200) {
-          renderIdeas(document.getElementById("ideas-list"), data);
-        } else {
-          alert("Invalid Credentials");
-        }
-      } catch (err) {
-        console.log(err);
-      }
-    };
-
-    const renderIdeas = (container, ideas) => {
-      container.innerHTML = "";
-      ideas.forEach((idea) => {
-        const li = document.createElement("li");
-        li.innerHTML = idea.idea_text;
-        container.appendChild(li);
-      });
-    };
-
-    const openRequest = (path, method, body) => {
-      const url = "http://localhost:8000/api";
-
-      const options = {
-        method: method,
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-        body: JSON.stringify(body),
-      };
-
-      return fetch(url + path, options)
-        .then(async (res) => {
-          const result = {};
-          result.status = res.status;
-          result.data = await res.json();
-          return result;
-        })
-        .catch((err) => console.log("Error:", err));
-    };
-
-    const authRequest = (path, method, body) => {
-      const url = "http://localhost:8000/api";
-
-      const options = {
-        method: method,
-        headers: {
-          "Content-Type": "application/json",
-          authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-        credentials: "include",
-        body: JSON.stringify(body),
-      };
-
-      return fetch(url + path, options)
-        .then(async (res) => {
-          const result = {};
-          result.status = res.status;
-          result.data = await res.json();
-          return result;
-
-          if (res.status === 401) {
-            localStorage.removeItem("token");
-            window.location.href = "/";
-          }
-
-          return result;
-        })
-        .catch((err) => console.log("Error:", err));
-    };
-  </script>
 </html>
