@@ -138,3 +138,6 @@ GitHub.sublime-settings
 
 # This project #
 ideas/audio/*
+
+# Client-side #
+node_modules/

@@ -1,0 +1,15 @@
+{
+  "name": "web",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@picovoice/porcupine-web-en-worker": "^2.0.2",
+    "@picovoice/web-voice-processor": "^2.1.2"
+  }
+}
