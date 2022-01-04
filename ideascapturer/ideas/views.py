@@ -1,6 +1,8 @@
 from .models import Idea
 from .serializers import IdeaSerializer
-from rest_framework import mixins, generics, permissions
+from rest_framework import mixins, generics
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 
 class IdeaView(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
@@ -27,3 +29,13 @@ class IdeaView(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericA
 
 
 idea_view = IdeaView.as_view()
+
+
+class picovoiceAccessKeyView(APIView):
+    # Authentication, but not authorization, is handled in settings.py
+    def get(self, request):
+        # Hardcoded key - don't do this
+        return Response({'accessKey': 'tNxjWgo/Wn6CRltFkIQOfUUE0Tl9HCBZ7vsAYQFt5vqO57yKAjL2wQ=='})
+
+
+picovoice_access_key_view = picovoiceAccessKeyView.as_view()

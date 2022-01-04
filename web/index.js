@@ -9,6 +9,8 @@ const login = async (e) => {
     const { status, data } = res;
     if (status === 200) {
       localStorage.setItem("token", data.access);
+      const res = await authRequest("/ideas/picovoice-key/", "GET");
+      localStorage.setItem("picovoice", res.data.accessKey);
       await getIdeas();
     } else {
       alert("Invalid Credentials");

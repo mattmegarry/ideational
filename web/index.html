@@ -10,6 +10,8 @@
     <script src="node_modules/@picovoice/porcupine-web-en-worker/dist/iife/index.js"></script>
     <script src="node_modules/@picovoice/web-voice-processor/dist/iife/index.js"></script>
     <script type="application/javascript">
+      const beep = new Audio("/beep.mp3");
+
       function writeMessage(message) {
         console.log(message);
         document.getElementById("status").innerHTML = message;
@@ -20,21 +22,23 @@
       }
 
       function porcupineKeywordCallback(keyword) {
+        beep.play();
         const time = new Date();
         const message = `keyword detected at ${time.toLocaleTimeString()}: ${keyword}`;
         console.log(message);
         document.getElementById("result").innerHTML = message;
       }
 
-      async function startPorcupine(accessKey) {
+      async function startPorcupine() {
+        const accessKey = localStorage.getItem("picovoice");
         writeMessage("Porcupine is loading. Please wait...");
         try {
           let ppnEn = await PorcupineWebEnWorker.PorcupineWorkerFactory.create(
             accessKey,
             [
               {
-                builtin: "Computer",
-                sensitivity: 0.9,
+                builtin: "Grapefruit",
+                sensitivity: 1,
               },
               {
                 custom: "papaya whip",
@@ -73,7 +77,7 @@
       </form>
     </div>
     <div id="ideas-list"></div>
-    <button onclick="startPorcupine(picovoiceAccessKey);">Record</button>
+    <button onclick="startPorcupine();">Record</button>
     <div id="status"></div>
     <div id="result"></div>
   </body>
