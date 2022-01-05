@@ -1,0 +1,22 @@
+{
+  "Content-Length": "14586",
+  "Content-Type": "multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+  "Host": "localhost:8000",
+  "Connection": "keep-alive",
+  "Pragma": "no-cache",
+  "Cache-Control": "no-cache",
+  "Sec-Ch-Ua": "\"Google Chrome\";v=\"95\", \"Chromium\";v=\"95\", \";Not A Brand\";v=\"99\"",
+  "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjQxNDE2OTgzLCJqdGkiOiJjYzM4MTc0Njg2ZmU0MzkwYTI1NGY0MDIwZDFiNDQ5YyIsInVzZXJfaWQiOjF9.jr2jb5PG14zP4y9hW_OSekHKOJf7t_JtAZRnDIKjsyg",
+  "Sec-Ch-Ua-Mobile": "?0",
+  "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36",
+  "Sec-Ch-Ua-Platform": "\"Linux\"",
+  "Accept": "*/*",
+  "Origin": "http://localhost:3000",
+  "Sec-Fetch-Site": "same-site",
+  "Sec-Fetch-Mode": "cors",
+  "Sec-Fetch-Dest": "empty",
+  "Referer": "http://localhost:3000/",
+  "Accept-Encoding": "gzip, deflate, br",
+  "Accept-Language": "en-GB,en-US;q=0.9,en;q=0.8",
+  "Cookie": "csrftoken=Ye34YpMaIHLsqzr3ugev4f0VaZVWUpcPUORWpQ3ZzVg8ft0cSblhOKk4fIsj2oEr"
+}

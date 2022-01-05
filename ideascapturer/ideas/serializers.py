@@ -1,9 +1,10 @@
-from rest_framework.serializers import ModelSerializer, FileField
+from rest_framework.serializers import ModelSerializer, FileField, CharField
 from .models import Idea
 
 
 class IdeaSerializer(ModelSerializer):
     audio_file = FileField(required=False)
+    idea_text = CharField(required=True)
 
     class Meta:
         model = Idea

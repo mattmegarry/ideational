@@ -1,0 +1,12 @@
+{
+  "Content-Length": "70955",
+  "Content-Type": "multipart/form-data; boundary=--------------------------881424990525873735724220",
+  "Cache-Control": "no-cache",
+  "Postman-Token": "861cda9f-ed84-4417-b404-9e82d77f4eaf",
+  "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjQxNDE3MDQ4LCJqdGkiOiJmZTUzNjIzMDNkMDU0NWYwOTQ2YTBiYzZkMmViMGYzMSIsInVzZXJfaWQiOjJ9.3dFnxZZSm0nthjoCZf63iz7T0kwy40EOZzuGE2JxnOs",
+  "User-Agent": "PostmanRuntime/7.1.1",
+  "Accept": "*/*",
+  "Host": "127.0.0.1:8000",
+  "Accept-Encoding": "gzip, deflate",
+  "Connection": "keep-alive"
+}

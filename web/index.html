@@ -10,8 +10,9 @@
     <script src="node_modules/@picovoice/porcupine-web-en-worker/dist/iife/index.js"></script>
     <script src="node_modules/@picovoice/web-voice-processor/dist/iife/index.js"></script>
     <script type="application/javascript">
+      let mediaRecorderInstance = null;
       const beep = new Audio("/beep.mp3");
-      const fin = new Audio("/quickFin.mp3");
+      const fin = new Audio("/fin.mp3");
 
       function writeMessage(message) {
         console.log(message);
@@ -31,7 +32,7 @@
         }
         if (keyword === "Terminator") {
           fin.play();
-          stopRecordingAndSendSaveIdea();
+          stopRecordingIdea(mediaRecorderInstance);
         }
       }
 
@@ -69,6 +70,60 @@
           return;
         }
       }
+
+      const handleSuccess = (stream) => {
+        const options = { mimeType: "audio/webm" };
+        const recordedChunks = [];
+        const mediaRecorder = new MediaRecorder(stream, options);
+
+        mediaRecorder.addEventListener("dataavailable", function (e) {
+          if (e.data.size > 0) recordedChunks.push(e.data);
+        });
+
+        mediaRecorder.addEventListener("stop", async () => {
+          console.log("Recording finsished!");
+          const player = document.getElementById("player");
+          const blob = new Blob(recordedChunks, { type: "audio/wav" });
+          player.src = URL.createObjectURL(blob);
+          const audioFile = new File([blob], "user_audio.wav", {
+            type: "audio/wav",
+          });
+
+          const formData = new FormData();
+          formData.append("audio_file", audioFile);
+          formData.append("idea_text", "Julie McMoo");
+          try {
+            const res = await authRequest(
+              "/ideas/",
+              "POST",
+              formData,
+              "multipart/form-data"
+            );
+          } catch (err) {
+            console.log(err);
+          }
+
+          mediaRecorderInstance = null;
+        });
+
+        return mediaRecorder;
+      };
+
+      const startRecordingIdea = () => {
+        navigator.mediaDevices
+          .getUserMedia({ audio: true, video: false })
+          .then(handleSuccess)
+          .then((mediaRecorder) => {
+            mediaRecorderInstance = mediaRecorder;
+            mediaRecorderInstance.start();
+          });
+      };
+
+      const stopRecordingIdea = (mediaRecorderInstance) => {
+        if (mediaRecorderInstance) {
+          mediaRecorderInstance.stop();
+        }
+      };
     </script>
   </head>
   <body>
@@ -85,20 +140,5 @@
     <div id="status"></div>
     <div id="result"></div>
     <audio id="player" controls></audio>
-    <script>
-      const player = document.getElementById("player");
-
-      const handleSuccess = function (stream) {
-        if (window.URL) {
-          player.srcObject = stream;
-        } else {
-          player.src = stream;
-        }
-      };
-
-      navigator.mediaDevices
-        .getUserMedia({ audio: true, video: false })
-        .then(handleSuccess);
-    </script>
   </body>
 </html>

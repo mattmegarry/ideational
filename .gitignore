@@ -137,7 +137,7 @@ GitHub.sublime-settings
 .history
 
 # This project #
-ideas/audio/*
+ideascapturer/ideas/audio/*
 
 # Client-side #
 node_modules/

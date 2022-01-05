@@ -3,11 +3,13 @@ from .serializers import IdeaSerializer
 from rest_framework import mixins, generics
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.parsers import MultiPartParser, FormParser
 
 
 class IdeaView(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
     queryset = Idea.objects.all()
     serializer_class = IdeaSerializer
+    parser_classes = [MultiPartParser, FormParser]
 
     def get_queryset(self):
         return self.queryset.filter(user=self.request.user)
