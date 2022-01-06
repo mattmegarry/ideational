@@ -4,7 +4,7 @@ from .models import Idea
 
 class IdeaSerializer(ModelSerializer):
     audio_file = FileField(required=False)
-    idea_text = CharField(required=True)
+    idea_text = CharField(required=False)
 
     class Meta:
         model = Idea

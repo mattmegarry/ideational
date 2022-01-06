@@ -91,7 +91,6 @@
 
           const formData = new FormData();
           formData.append("audio_file", audioFile);
-          formData.append("idea_text", "Julie McMoo");
           try {
             const res = await authRequest(
               "/ideas/",

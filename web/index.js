@@ -40,5 +40,15 @@ const renderIdeas = (container, ideas) => {
     const li = document.createElement("li");
     li.innerHTML = idea.idea_text;
     container.appendChild(li);
+    if (idea.audio_file) {
+      li.appendChild(buildPlayer(idea));
+    }
   });
+};
+
+const buildPlayer = (idea) => {
+  const player = document.createElement("audio");
+  player.setAttribute("src", idea.audio_file);
+  player.setAttribute("controls", true);
+  return player;
 };
