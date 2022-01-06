@@ -21,7 +21,6 @@ class IdeaView(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericA
         serializer.save(user=self.request.user)
 
     def post(self, request, *args, **kwargs):
-        print(request.data)
         audio_file_uploaded = request.FILES.get('audio_file')
         if audio_file_uploaded:
             content_type = audio_file_uploaded.content_type
@@ -33,11 +32,15 @@ class IdeaView(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericA
 idea_view = IdeaView.as_view()
 
 
-class picovoiceAccessKeyView(APIView):
+class PicovoiceAccessKeyView(APIView):
     # Authentication, but not authorization, is handled in settings.py
     def get(self, request):
         # Hardcoded key - don't do this
         return Response({'accessKey': 'tNxjWgo/Wn6CRltFkIQOfUUE0Tl9HCBZ7vsAYQFt5vqO57yKAjL2wQ=='})
 
 
-picovoice_access_key_view = picovoiceAccessKeyView.as_view()
+picovoice_access_key_view = PicovoiceAccessKeyView.as_view()
+
+
+def TranscribeVoice():
+    print('asdasda')
