@@ -40,7 +40,3 @@ class PicovoiceAccessKeyView(APIView):
 
 
 picovoice_access_key_view = PicovoiceAccessKeyView.as_view()
-
-
-def TranscribeVoice():
-    print('asdasda')
