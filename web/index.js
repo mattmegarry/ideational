@@ -48,7 +48,10 @@ const renderIdeas = (container, ideas) => {
 
 const buildPlayer = (idea) => {
   const player = document.createElement("audio");
-  player.setAttribute("src", idea.audio_file);
+  const string = idea.audio_file;
+  const path = string.substring(0, string.lastIndexOf("/") + 1);
+  const name = string.substring(string.lastIndexOf("/") + 1, string.length);
+  player.setAttribute("src", path + "converted_" + name);
   player.setAttribute("controls", true);
   return player;
 };

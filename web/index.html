@@ -9,6 +9,7 @@
     <title>Ideational</title>
     <script src="node_modules/@picovoice/porcupine-web-en-worker/dist/iife/index.js"></script>
     <script src="node_modules/@picovoice/web-voice-processor/dist/iife/index.js"></script>
+    <script src="/recorderJs.js"></script>
     <script type="application/javascript">
       let mediaRecorderInstance = null;
       const beep = new Audio("/beep.mp3");
@@ -83,7 +84,7 @@
         mediaRecorder.addEventListener("stop", async () => {
           console.log("Recording finsished!");
           const player = document.getElementById("player");
-          const blob = new Blob(recordedChunks, { type: "audio/wav" });
+          const blob = new Blob(recordedChunks, { type: "audio/webm" });
           player.src = URL.createObjectURL(blob);
           const audioFile = new File([blob], "user_audio.wav", {
             type: "audio/wav",
@@ -98,6 +99,9 @@
               formData,
               "multipart/form-data"
             );
+            if (res.status === 201) {
+              getIdeas();
+            }
           } catch (err) {
             console.log(err);
           }
