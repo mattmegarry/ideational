@@ -41,16 +41,25 @@ const renderIdeas = (container, ideas) => {
     li.innerHTML = idea.idea_text;
     container.appendChild(li);
     if (idea.audio_file) {
-      li.appendChild(buildPlayer(idea));
+      const playButton = document.createElement("button");
+      playButton.innerHTML = "Play";
+      playButton.addEventListener("click", () => {
+        const player = buildPlayer(idea.audio_file);
+        li.appendChild(player);
+        player.play();
+      });
+      li.appendChild(playButton);
     }
   });
 };
 
-const buildPlayer = (idea) => {
+const buildPlayer = (audioFileUrl) => {
   const player = document.createElement("audio");
-  const string = idea.audio_file;
-  const path = string.substring(0, string.lastIndexOf("/") + 1);
-  const name = string.substring(string.lastIndexOf("/") + 1, string.length);
+  const path = audioFileUrl.substring(0, audioFileUrl.lastIndexOf("/") + 1);
+  const name = audioFileUrl.substring(
+    audioFileUrl.lastIndexOf("/") + 1,
+    audioFileUrl.length
+  );
   player.setAttribute("src", path + "converted_" + name);
   player.setAttribute("controls", true);
   return player;
