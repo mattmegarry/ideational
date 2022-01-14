@@ -1,6 +1,8 @@
-const openRequest = (path, method, body) => {
-  const url = "http://localhost:8000/api";
+const serverUrl = devEnv
+  ? "http://localhost:8000/api"
+  : "https://ACTUAL SERVER IP.com/api";
 
+const openRequest = (path, method, body) => {
   const options = {
     method: method,
     headers: {
@@ -10,7 +12,7 @@ const openRequest = (path, method, body) => {
     body: JSON.stringify(body),
   };
 
-  return fetch(url + path, options)
+  return fetch(serverUrl + path, options)
     .then(async (res) => {
       const result = {};
       result.status = res.status;
@@ -21,8 +23,6 @@ const openRequest = (path, method, body) => {
 };
 
 const authRequest = (path, method, body, nonJsonContentType) => {
-  const url = "http://localhost:8000/api";
-
   const headers = { authorization: `Bearer ${localStorage.getItem("token")}` };
   let variableBody;
 
@@ -45,7 +45,7 @@ const authRequest = (path, method, body, nonJsonContentType) => {
     body: variableBody,
   };
 
-  return fetch(url + path, options)
+  return fetch(serverUrl + path, options)
     .then(async (res) => {
       const result = {};
       result.status = res.status;

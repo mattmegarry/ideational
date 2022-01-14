@@ -141,4 +141,6 @@ ideascapturer/ideas/audio/*
 
 # Client-side #
 node_modules/
-#dev-env.js
+
+# I did: git update-index --skip-worktree web/scripts/dev-env.js
+# https://stackoverflow.com/a/39776107/14269225
