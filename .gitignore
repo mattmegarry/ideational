@@ -141,3 +141,4 @@ ideascapturer/ideas/audio/*
 
 # Client-side #
 node_modules/
+#dev-env.js
