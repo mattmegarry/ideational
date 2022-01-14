@@ -1,4 +1,7 @@
 {
+  "name": "ideational Progressive Web App",
+  "short_name": "ideational",
+  "description": "Progressive Web App that allows users to capture ideas without blocking their flow!",
   "icons": [
     {
       "src": "assets/android-launchericon-512-512.png",
@@ -24,5 +27,9 @@
       "src": "assets/android-launchericon-48-48.png",
       "sizes": "48x48"
     }
-  ]
+  ],
+  "start_url": "index.html",
+  "display": "fullscreen",
+  "theme_color": "#B12A34",
+  "background_color": "#B12A34"
 }
